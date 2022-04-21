@@ -15,8 +15,7 @@ function extractLinks(text) {
         arrayResult.push({ [temp[1]]: temp[2] });//valor englobado por chaves
     }
 
-
-    return (arrayResult);
+    return arrayResult.length === 0 ? 'there are no links' : arrayResult;
 }
 
 
@@ -28,15 +27,15 @@ function treatError(err) {
 
 //https://fegemo.github.io/cefet-web/classes/js7/#28
 
-async function getFile(filePath) {
+export async function getFile(filePath) {
     try {
         const encoding = 'utf-8';
         const text = await promises.readFile(filePath, encoding);
-        console.log(extractLinks(text));
+        return extractLinks(text);
     } catch (error) {
         treatError(error)
     }
 }
 
-getFile(filePath);
+
 
