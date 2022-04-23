@@ -1,5 +1,5 @@
 import { promises, readFile } from 'fs';
-import chalk from 'chalk';
+
 
 const filePath = './files/text1.md';
 
@@ -21,7 +21,7 @@ function extractLinks(text) {
 
 function treatError(err) {
 
-    throw new Error(chalk.green.red(err.code, chalk.red('There is not file in the given path!')));
+    throw new Error((err.code, 'There is not file in the given path!'));
 
 }
 

@@ -16,3 +16,4 @@ async function processText(filePath) {
 }
 
 processText(path);
+

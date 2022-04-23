@@ -4,16 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node --trace-warnings' node node_modules/jest/bin/jest.js --detectOpenHandles",
     "cli": "node cli.js ./files/text1.md"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ansi-styles": "^6.1.0",
+    "babel-jest": "^27.5.1",
     "chalk": "^5.0.1",
     "node-fetch": "^3.2.3",
-    "nthline": "^1.0.2"
+    "nthline": "^1.0.2",
+    "ts-jest": "^27.1.4"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "jest": "^27.5.1"
+  }
 }
