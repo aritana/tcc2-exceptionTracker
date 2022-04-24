@@ -70,7 +70,7 @@ export default defineComponent({
       this.descricao = "";
     }
   },
-    setup() {
+    setup() {//vuex
       const store = useStore(key)
       return {
         projetos: computed(() => store.state.projetos)
