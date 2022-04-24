@@ -10,6 +10,7 @@
     <div class="column is-11 conteudo">
       <router-view></router-view>
     </div>
+
   </main>
 </template>
 
