@@ -8,18 +8,20 @@
     </div>
 
     <div class="column is-11 conteudo">
+      <minhas-notificacoes/>
       <router-view></router-view>
     </div>
-
   </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import BarraLateral from "./components/BarraLateral.vue";
+import MinhasNotificacoes from "./components/MinhasNotificacoes.vue";
+
 
 export default defineComponent({
-  components: { BarraLateral },
+  components: { BarraLateral, MinhasNotificacoes },
   name: "App",
   data() {
     return {
