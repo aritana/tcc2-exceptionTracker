@@ -1,6 +1,6 @@
 import express from "express";
 import livrosRoutes from "./livrosRoutes.js"
-
+import autoresRoutes from "./autoresRoutes.js"
 
 //Rotas, instancia do app
 const routes = (app) => {
@@ -11,7 +11,8 @@ const routes = (app) => {
 
     app.use(
         express.json(),
-        livrosRoutes //rota disponivel
+        livrosRoutes, //rota disponivel
+        autoresRoutes
     )
 }
 export default routes;

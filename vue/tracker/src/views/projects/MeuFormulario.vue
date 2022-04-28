@@ -61,13 +61,16 @@ export default defineComponent({
         this.store.commit(ADICIONA_PROJETO, this.nomeDoProjeto);
       }
       this.nomeDoProjeto = "";
+      this.$router.push("/projetos");
+    },
+    notificar (){
       this.store.commit(NOTIFICAR, {
         titulo: "Novo projeto já foi salvo",
         texto: "Prontinho ;) seu projeto já está disponível.",
-        tipo: TipoNotificacao.SUCESSO,
+         tipo: TipoNotificacao.SUCESSO,
       });
-      this.$router.push("/projetos");
-    },
+    }
+
   },
   //Vuex
   setup() {
