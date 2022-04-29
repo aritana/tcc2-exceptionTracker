@@ -30,9 +30,9 @@ public class MongoDBHandleException {
         List<String> causesString = new ArrayList<String>();
         Throwable cause = exception.getCause();
 
-        Document exceptionDocument = new Document("Service", serviceName);
-        exceptionDocument.append("TraceId", traceService.getTraceId());
-        exceptionDocument.append("Exception", exception.toString());
+        Document exceptionDocument = new Document("service", serviceName);
+        exceptionDocument.append("traceId", traceService.getTraceId());
+        exceptionDocument.append("exception", exception.toString());
 
         while (cause != null) {
             String[] className = cause.getStackTrace()[0].getClassName().split("\\.");
@@ -47,7 +47,7 @@ public class MongoDBHandleException {
             cause = cause.getCause();//proxima Exceçao encadeada
         }
         //adiciona array de execoes encadeadas no documento  e insere na coleção
-        exceptionDocument.append("CausedBy", causesString);
+        exceptionDocument.append("causedBy", causesString);
         exceptionCollection.insertOne(exceptionDocument);
     }
 

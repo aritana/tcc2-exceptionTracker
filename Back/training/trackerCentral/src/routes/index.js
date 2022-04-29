@@ -1,18 +1,17 @@
 import express from "express";
-import livrosRoutes from "./livrosRoutes.js"
-import autoresRoutes from "./autoresRoutes.js"
+import exceptionRoutes from "./exceptionRoutes.js"
+
 
 //Rotas, instancia do app
 const routes = (app) => {
 
     app.route('/').get((req, res) => {
-        res.status(200).send({ titulo: "Curso de Node" })
+        res.status(200).send({ titulo: "Exception Tracker Back End" })
     })
 
     app.use(
         express.json(),
-        livrosRoutes, //rota disponivel
-        autoresRoutes
+        exceptionRoutes
     )
 }
 export default routes;
