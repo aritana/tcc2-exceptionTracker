@@ -20,7 +20,7 @@ class ExceptionsController {
                 if (!err) {
                     res.status(200).json(exceptions)
                 } else {
-                    res.status(400).send({ message: `${err.message} -  Id da Exceptions não localizado.` })
+                    res.status(400).send({ message: `${err.message} -  Id da Exception não localizado.` })
                 }
             })
     }
@@ -67,9 +67,21 @@ class ExceptionsController {
 
     static listarMetodo = async function (req, res) {
         const filePath = 'src/controllers/files/text1.md';
+        const exceptionId = req.query.exceptionid
+        let chosenException = ''
+
+        console.log(exceptionId)
+        exceptions.findById(exceptionId)
+            .exec((err, exceptions) => {
+                if (!err) {
+                    chosenException = exceptions
+                    console.log(chosenException)
+                } else {
+                    res.status(400).send({ message: `${err.message} -  Id da Exception não localizado.` })
+                }
+            })
 
 
-        console.log()
         try {
             const encoding = 'utf-8';
             const text = await promises.readFile(filePath, encoding);
