@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "0f7042b7-0122-4bbe-9f5f-e1b031834431",
+		"name": "Tracker-Central",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Exception por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/exceptions/626b61627a733d4e5093cfb2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"exceptions",
+						"626b61627a733d4e5093cfb2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Exceptions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/exceptions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"exceptions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get ExceptionsPorTraceId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/exceptions/traceId?traceId=3ed72e7d44383983",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"exceptions",
+						"traceId"
+					],
+					"query": [
+						{
+							"key": "traceId",
+							"value": "3ed72e7d44383983"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get ExceptionsPorService",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/exceptions/service?service=loja",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"exceptions",
+						"service"
+					],
+					"query": [
+						{
+							"key": "service",
+							"value": "loja"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Exception por ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/exceptions/id/626b61627a733d4e5093cfb2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"exceptions",
+						"id",
+						"626b61627a733d4e5093cfb2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Exception por traceId",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/exceptions/traceid/1130af4cb2a5346d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"exceptions",
+						"traceid",
+						"1130af4cb2a5346d"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

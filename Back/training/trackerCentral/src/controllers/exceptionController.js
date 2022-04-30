@@ -1,4 +1,6 @@
 import exceptions from "../models/Exceptions.js";
+import { promises, readFile } from 'fs';
+
 
 
 class ExceptionsController {
@@ -63,5 +65,27 @@ class ExceptionsController {
         })
     }
 
+    static listarMetodo = async function (req, res) {
+        const filePath = 'src/controllers/files/text1.md';
+        console.log()
+        try {
+            const encoding = 'utf-8';
+            const text = await promises.readFile(filePath, encoding);
+            res.status(200).json(text)
+        } catch (error) {
+            treatError(error)
+        }
+    }
+
 }
+
+
+function treatError(error) {
+
+    throw new Error((error.code, 'There is not file in the given path!'));
+
+}
+
+
+
 export default ExceptionsController;
