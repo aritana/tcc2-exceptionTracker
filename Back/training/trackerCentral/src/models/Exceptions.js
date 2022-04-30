@@ -6,7 +6,8 @@ const exceptionSchema = new mongoose.Schema(
         service: { type: String, required: true },
         traceId: { type: String, required: true },
         exception: { type: String },
-        causedBy: [{ type: String }] //array of strings
+        causedBy: [{ type: String }],
+        method: { type: String }
     },
     { versionKey: false }
 )

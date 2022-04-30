@@ -67,6 +67,8 @@ class ExceptionsController {
 
     static listarMetodo = async function (req, res) {
         const filePath = 'src/controllers/files/text1.md';
+
+
         console.log()
         try {
             const encoding = 'utf-8';

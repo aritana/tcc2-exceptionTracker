@@ -48,6 +48,7 @@ public class MongoDBHandleException {
         }
         //adiciona array de execoes encadeadas no documento  e insere na coleção
         exceptionDocument.append("causedBy", causesString);
+        exceptionDocument.append("method", "");
         exceptionCollection.insertOne(exceptionDocument);
     }
 
