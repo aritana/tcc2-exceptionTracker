@@ -6,11 +6,10 @@ const router = express.Router();
 
 router
     .get("/exceptions", ExceptionsController.listarexceptions)
-    .get("/exceptions/traceId", ExceptionsController.listarexceptionsPorTraceId)
+    .get("/exceptions/traceid", ExceptionsController.listarexceptionsPorTraceId)
     .get("/exceptions/service", ExceptionsController.listarexceptionsPorService)
     .get("/exceptions/:id", ExceptionsController.listarexceptionsPorId)
-// .post("/exceptions", ExceptionsController.cadastrarExceptions)
-// .put("/exceptions/:id", ExceptionsController.atualizarExceptions)
-// .delete("/exceptions/:id", ExceptionsController.excluirExceptions)
+    .delete("/exceptions/id/:id", ExceptionsController.excluirExceptionsPorId)
+    .delete("/exceptions/traceid/:traceid", ExceptionsController.excluirExceptionsPorTraceId)
 
 export default router;

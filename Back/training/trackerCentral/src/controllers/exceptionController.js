@@ -23,40 +23,6 @@ class ExceptionsController {
             })
     }
 
-    static cadastrarExceptions = (req, res) => {
-
-        let Exceptions = new exceptions(req.body);
-        Exceptions.save((err) => {
-            if (err) {
-                res.status(500).send({ message: `${err.message} -  falha ao cadastrar Exceptions.` })
-            } else {
-                res.status(201).send(Exceptions.toJSON())
-            }
-        })
-    }
-    static atualizarExceptions = (req, res) => {
-        const id = req.params.id
-        exceptions.findByIdAndUpdate(id, { $set: req.body }, (err) => {
-            if (!err) {
-                res.status(200).send({ message: 'Exceptions atualizado com sucesso' })
-            } else {
-                res.status(500).send({ message: `${err.message} -  falha ao atualizar Exceptions.` })
-            }
-        })
-    }
-
-    static excluirExceptions = (req, res) => {
-        const id = req.params.id;
-
-        exceptions.findByIdAndDelete(id, (err) => {
-            if (!err) {
-                res.status(200).send({ message: 'Exceptions removido com sucesso' })
-            } else {
-                res.status(500).send({ message: `${err.message} -  falha ao remover Exceptions.` })
-            }
-        })
-    }
-
     static listarexceptionsPorTraceId = (req, res) => {
         const traceId = req.query.traceId
         //localiza a traceId, opcoes de query vazias
@@ -72,5 +38,30 @@ class ExceptionsController {
             res.status(200).send(exceptions);
         })
     }
+
+    static excluirExceptionsPorId = (req, res) => {
+        const id = req.params.id;
+
+        exceptions.findByIdAndDelete(id, (err) => {
+            if (!err) {
+                res.status(200).send({ message: 'Exception removida com sucesso' })
+            } else {
+                res.status(500).send({ message: `${err.message} -  falha ao remover Exception.` })
+            }
+        })
+    }
+
+    static excluirExceptionsPorTraceId = (req, res) => {
+        const traceId = req.params.traceid;
+
+        exceptions.findOneAndDelete({ 'traceId': traceId }, (err) => {
+            if (!err) {
+                res.status(200).send({ message: 'Exception removida com sucesso' })
+            } else {
+                res.status(500).send({ message: `${err.message} -  falha ao remover Exception.` })
+            }
+        })
+    }
+
 }
 export default ExceptionsController;
