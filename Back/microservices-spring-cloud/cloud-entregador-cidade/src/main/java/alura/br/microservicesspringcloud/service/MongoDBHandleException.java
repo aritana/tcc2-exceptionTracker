@@ -21,6 +21,9 @@ public class MongoDBHandleException {
     @Value("${service.name}")
     private String serviceName;
 
+    @Value("${service.path}")
+    private String servicePath;
+
     public void saveException(Exception exception) {
 
         //selecionando mongo database
@@ -48,7 +51,7 @@ public class MongoDBHandleException {
         }
         //adiciona array de execoes encadeadas no documento  e insere na coleção
         exceptionDocument.append("causedBy", causesString);
-        exceptionDocument.append("method", "");
+        exceptionDocument.append("path", servicePath);
         exceptionCollection.insertOne(exceptionDocument);
     }
 
