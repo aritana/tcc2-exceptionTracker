@@ -21,9 +21,9 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useStore } from "@/store";
-import { ADICIONA_PROJETO, ALTERA_PROJETO } from "@/store/tiposMutacoes";
 import { TipoNotificacao } from "@/interfaces/INotificacao";
 import useNotificador from "@/hooks/notificador";
+import { CADASTRAR_PROJETOS, ALTERAR_PROJETO } from "@/store/tipo-acoes";
 
 export default defineComponent({
   name: "MeuFormulario",
@@ -52,13 +52,20 @@ export default defineComponent({
   methods: {
     salvar() {
       if (this.id) {
-        this.store.commit(ALTERA_PROJETO, {
-          id: this.id,
-          nome: this.nomeDoProjeto,
-        });
+        this.store
+          .dispatch(ALTERAR_PROJETO, {
+            //antes era commit, mas mudou pra back
+            id: this.id,
+            nome: this.nomeDoProjeto,
+          })
+          .then(() => this.lidarComSucesso());
       } else {
-        this.store.commit(ADICIONA_PROJETO, this.nomeDoProjeto);
+        this.store
+          .dispatch(CADASTRAR_PROJETOS, this.nomeDoProjeto)
+          .then(() => this.lidarComSucesso());
       }
+    },
+    lidarComSucesso() {
       this.nomeDoProjeto = "";
       this.notificar(
         TipoNotificacao.SUCESSO,

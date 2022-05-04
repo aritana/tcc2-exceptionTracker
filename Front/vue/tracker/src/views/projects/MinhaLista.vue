@@ -40,21 +40,23 @@
 <script lang="ts">
 import { computed, defineComponent } from "vue";
 import { useStore } from "@/store";
-import { EXCLUIR_PROJETO } from "@/store/tiposMutacoes"
+import { OBTER_PROJETOS, REMOVER_PROJETO } from "@/store/tipo-acoes";
 
 export default defineComponent({
   name: "MinhaLista",
   //Vuex
   setup() {
     const store = useStore();
+    store.dispatch(OBTER_PROJETOS); //axion, acao
+
     return {
       projetos: computed(() => store.state.projetos),
       store,
     };
   },
   methods: {
-    excluir(id:string) {
-      this.store.commit(EXCLUIR_PROJETO, id);
+    excluir(id: string) {
+      this.store.dispatch(REMOVER_PROJETO, id); //commit para mutation
     },
   },
 });
