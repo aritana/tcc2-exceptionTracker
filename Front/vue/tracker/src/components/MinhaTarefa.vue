@@ -1,6 +1,6 @@
 <template>
   <meu-box>
-    <div class="columns">
+    <div class="columns clicavel" @click="tarefaClicada">
       <div class="column is-4">
         {{ tarefa.descricao || "Tarefa sem descrição" }}
       </div>
@@ -25,14 +25,23 @@ import MeuCronometro from "./MeuCronometro.vue";
 export default defineComponent({
   components: { MeuCronometro, MeuBox },
   name: "MinhaTarefa",
+  emits: ["aoTarefaClicada"],
   props: {
     tarefa: {
       type: Object as PropType<ITarefa>,
       required: true,
     },
   },
+  methods: {
+    tarefaClicada(): void {
+      this.$emit("aoTarefaClicada", this.tarefa); //emitr para lista de tarefas
+    },
+  },
 });
 </script>
 
 <style scoped>
+.clicavel {
+  cursor: pointer;
+}
 </style>

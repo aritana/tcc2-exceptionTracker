@@ -6,15 +6,27 @@
     },
     {
       "id": 2,
-      "nome": "bitebank*"
+      "nome": "Monitoria"
+    }
+  ],
+  "tarefas": [
+    {
+      "id": 1,
+      "duracaoEmSegudos": 60,
+      "descricao": "configuração do ambiente2",
+      "projeto": {
+        "id": 1,
+        "nome": "Alura Tracker-"
+      }
     },
     {
-      "nome": "dfd",
-      "id": 3
-    },
-    {
-      "nome": "fdfd",
-      "id": 4
+      "duracaoEmSegudos": 1,
+      "descricao": "monitor java",
+      "projeto": {
+        "id": 1,
+        "nome": "Alura Tracker-"
+      },
+      "id": 2
     }
   ]
 }

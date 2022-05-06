@@ -46,6 +46,7 @@ export default defineComponent({
   name: "MinhaLista",
   //Vuex
   setup() {
+    // monta a store
     const store = useStore();
     store.dispatch(OBTER_PROJETOS); //axion, acao
 

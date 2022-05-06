@@ -8,7 +8,7 @@
     </div>
 
     <div class="column is-11 conteudo">
-      <minhas-notificacoes/>
+      <minhas-notificacoes />
       <router-view></router-view>
     </div>
   </main>
@@ -18,7 +18,6 @@
 import { defineComponent } from "vue";
 import BarraLateral from "./components/BarraLateral.vue";
 import MinhasNotificacoes from "./components/MinhasNotificacoes.vue";
-
 
 export default defineComponent({
   components: { BarraLateral, MinhasNotificacoes },
