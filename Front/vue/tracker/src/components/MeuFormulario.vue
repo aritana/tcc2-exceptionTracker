@@ -39,11 +39,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import Temporizador from "./MeuTemporizador.vue";
-import { useStore } from 'vuex'
-import { key } from '@/store'
-
+import { useStore } from "vuex";
+import { key } from "@/store";
+import IProjeto from "@/interfaces/IProjeto";
 
 export default defineComponent({
   name: "MeuFormulario",
@@ -52,31 +52,32 @@ export default defineComponent({
     Temporizador,
   },
 
-  data() {
-    return {
-      descricao: '', //linkado com o v-model que o usuario digitou
-      idProjeto: '',
-    };
-  }, //estados
+  setup(props, { emit }) {
+    //vuex
+    const store = useStore(key);
+    const descricao = ref(""); //ref de string
+    const idProjeto = ref("");
+    const projetos = computed(() => store.state.projeto.projetos);
 
-  methods: {
-    salvarTarefa(tempoDecorrido: number): void {
-      this.$emit("aoSalvarTarefa", {
+    const salvarTarefa = (tempoDecorrido: number): void => {
+      emit("aoSalvarTarefa", {
         duracaoEmSegudos: tempoDecorrido,
-        descricao: this.descricao,
-        projeto: this.projetos.find(proj => proj.id == this.idProjeto)
+        descricao: descricao.value,
+        projeto: projetos.value.find(
+          (proj: IProjeto) => proj.id == idProjeto.value
+        ),
       });
 
-      this.descricao = "";
-    }
+      descricao.value = "";
+    };
+
+    return {
+      projetos,
+      descricao, //como se descricao:descricao, mesmo nome, ignora esse passo
+      idProjeto,
+      salvarTarefa,
+    };
   },
-    setup() {//vuex
-      const store = useStore(key)
-      return {
-        projetos: computed(() => store.state.projetos)
-      }
-    }
-  
 });
 
 //estilo nao escopado para transmitir para os componentes filhos

@@ -2,18 +2,22 @@
   "projetos": [
     {
       "id": 1,
-      "nome": "Alura Tracker-"
+      "nome": "Alura Tracker"
     },
     {
       "id": 2,
-      "nome": "Monitoria"
+      "nome": "Monitoria1"
+    },
+    {
+      "nome": "amassar pao",
+      "id": 3
     }
   ],
   "tarefas": [
     {
       "id": 1,
       "duracaoEmSegudos": 60,
-      "descricao": "configuração do ambiente2",
+      "descricao": "configuração do ambiente",
       "projeto": {
         "id": 1,
         "nome": "Alura Tracker-"
@@ -21,10 +25,10 @@
     },
     {
       "duracaoEmSegudos": 1,
-      "descricao": "monitor java",
+      "descricao": "trim",
       "projeto": {
         "id": 1,
-        "nome": "Alura Tracker-"
+        "nome": "Alura Tracker"
       },
       "id": 2
     }
