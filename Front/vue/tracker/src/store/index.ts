@@ -12,8 +12,6 @@ import http from "@/http";
 import ITarefa from "@/interfaces/ITarefa";
 import { EstadoProjeto, projeto } from "./modulos/projeto";
 
-//vuex
-
 export interface Estado {
   notificacoes: INotificacao[];
   tarefas: ITarefa[];
@@ -58,11 +56,16 @@ export const store = createStore<Estado>({
   }, //nao posso fazer operacoes assincronas nas mutations, para vuex, utilizo, actions
 
   actions: {
-    [OBTER_TAREFAS]({ commit }) {
+    [OBTER_TAREFAS]({ commit }, filtro: string) {
       //commit, quando resolver a requisicao, eu altero o estado
-      http
-        .get("tarefas")
-        .then((resposta) => commit(DEFINIR_TAREFAS, resposta.data)); //Mutacao e dados
+
+      let url = "tarefas";
+
+      if (filtro) {
+        url += "?descricao=" + filtro;
+      }
+
+      http.get(url).then((resposta) => commit(DEFINIR_TAREFAS, resposta.data)); //Mutacao e dados
     },
     [CADASTRAR_TAREFA]({ commit }, tarefa: string) {
       return http
@@ -73,7 +76,8 @@ export const store = createStore<Estado>({
       //acao commita a mutacao
       return http
         .put(`tarefas/${tarefa.id}`, tarefa)
-        .then((resposta) => commit(ALTERA_TAREFA, tarefa)); //ja salva o estado
+        .then(() => commit(ALTERA_TAREFA, tarefa)); //ja salva o estado
+      // .then((resposta) => commit(ALTERA_TAREFA, tarefa)); //ja salva o estado
     },
   },
   modules: {

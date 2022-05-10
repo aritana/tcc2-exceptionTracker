@@ -17,7 +17,7 @@
     {
       "id": 1,
       "duracaoEmSegudos": 60,
-      "descricao": "configuração do ambiente",
+      "descricao": "configuração do ambiente2",
       "projeto": {
         "id": 1,
         "nome": "Alura Tracker-"
@@ -25,7 +25,7 @@
     },
     {
       "duracaoEmSegudos": 1,
-      "descricao": "trim",
+      "descricao": "trim2",
       "projeto": {
         "id": 1,
         "nome": "Alura Tracker"
