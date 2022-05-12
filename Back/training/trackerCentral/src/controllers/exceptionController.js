@@ -66,33 +66,42 @@ class ExceptionsController {
     }
 
     static listarMetodo = async function (req, res) {
-        const filePath = 'src/controllers/files/text1.md';
-        const exceptionId = req.query.exceptionid
-        let chosenException = ''
+        let filePath = '';
 
-        console.log(exceptionId)
+        const exceptionId = req.query.exceptionid;
+
         exceptions.findById(exceptionId)
-            .exec((err, exceptions) => {
+            .exec(async (err, exception) => {
                 if (!err) {
-                    chosenException = exceptions
-                    console.log(chosenException)
-                } else {
+                    let exceptionRequired = exception._doc
+                    filePath = exceptionRequired.path;
+                    try {
+                        const encoding = 'utf-8';
+                        const text = await promises.readFile(filePath, encoding);
+                        res.status(200).json(text)
+                    } catch (error) {
+                        treatError(error)
+                    }
+                }
+                else {
                     res.status(400).send({ message: `${err.message} -  Id da Exception não localizado.` })
                 }
+
             })
-
-
-        try {
-            const encoding = 'utf-8';
-            const text = await promises.readFile(filePath, encoding);
-            res.status(200).json(text)
-        } catch (error) {
-            treatError(error)
-        }
+        // .then(lerClasse(filePath))
     }
 
 }
 
+async function lerClasse(filePath) {
+    try {
+        const encoding = 'utf-8';
+        const text = await promises.readFile(filePath, encoding);
+        res.status(200).json(text)
+    } catch (error) {
+        treatError(error)
+    }
+}
 
 function treatError(error) {
 
@@ -100,6 +109,5 @@ function treatError(error) {
 
 }
 
-
-
 export default ExceptionsController;
+

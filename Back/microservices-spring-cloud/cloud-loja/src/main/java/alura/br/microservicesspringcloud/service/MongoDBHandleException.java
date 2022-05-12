@@ -54,7 +54,7 @@ public class MongoDBHandleException {
         //adiciona array de execoes encadeadas no documento  e insere na coleção
         subPath = subPath.replaceAll("\\.","/");
         exceptionDocument.append("causedBy", causesString);
-        exceptionDocument.append("path", servicePath+"/"+subPath);
+        exceptionDocument.append("path", servicePath+"/" + subPath + ".java");
         exceptionCollection.insertOne(exceptionDocument);
     }
 
