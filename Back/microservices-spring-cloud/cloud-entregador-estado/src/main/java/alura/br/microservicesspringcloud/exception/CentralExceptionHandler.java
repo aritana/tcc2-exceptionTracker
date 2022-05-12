@@ -1,6 +1,5 @@
 package alura.br.microservicesspringcloud.exception;
 
-import alura.br.microservicesspringcloud.dto.responseError.InfoFornecedorErrorDto;
 import alura.br.microservicesspringcloud.exception.config.ErroDeFormularioDto;
 import alura.br.microservicesspringcloud.networking.config.ResponseError;
 import alura.br.microservicesspringcloud.service.MongoDBHandleException;

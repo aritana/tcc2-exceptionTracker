@@ -1,7 +1,6 @@
 package alura.br.microservicesspringcloud.service;
 
 import alura.br.microservicesspringcloud.dto.InfoFornecedorCidadeDto;
-import alura.br.microservicesspringcloud.dto.InfoFornecedorDto;
 import alura.br.microservicesspringcloud.networking.service.FornecedorCidadeServiceCore;
 import org.apache.logging.slf4j.SLF4JLogger;
 import org.slf4j.Logger;

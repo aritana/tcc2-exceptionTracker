@@ -37,21 +37,24 @@ public class MongoDBHandleException {
         exceptionDocument.append("traceId", traceService.getTraceId());
         exceptionDocument.append("exception", exception.toString());
 
+        String subPath = "";
         while (cause != null) {
             String[] className = cause.getStackTrace()[0].getClassName().split("\\.");
             int classNamePosition = className.length - 1;
 
+            subPath =  cause.getStackTrace()[0].getClassName();
             String message = cause.toString()
                     + " - Class: " + className[classNamePosition]
                     + " - Method: " + cause.getStackTrace()[0].getMethodName()
-                    + "- Line: " + cause.getStackTrace()[0].getLineNumber();
+                    + " - Line: " + cause.getStackTrace()[0].getLineNumber();
 
             causesString.add(message);
             cause = cause.getCause();//proxima Exceçao encadeada
         }
         //adiciona array de execoes encadeadas no documento  e insere na coleção
+        subPath = subPath.replaceAll("\\.","/");
         exceptionDocument.append("causedBy", causesString);
-        exceptionDocument.append("path", servicePath);
+        exceptionDocument.append("path", servicePath+"/"+subPath);
         exceptionCollection.insertOne(exceptionDocument);
     }
 
