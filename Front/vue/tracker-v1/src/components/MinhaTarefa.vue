@@ -20,10 +20,9 @@
 import ITarefa from "@/interfaces/ITarefa";
 import { defineComponent, PropType } from "vue";
 import MeuBox from "./MeuBox.vue";
-import MeuCronometro from "./MeuCronometro.vue";
 
 export default defineComponent({
-  components: { MeuCronometro, MeuBox },
+  components: { MeuBox },
   name: "MinhaTarefa",
   emits: ["aoTarefaClicada"],
   props: {
