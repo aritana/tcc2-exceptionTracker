@@ -29,7 +29,7 @@
 					"raw": "{\n    \"itens\":[\n        {\n            \"id\":\"1\",\n            \"quantidade\":5\n        },\n        {\n            \"id\":\"2\",\n            \"quantidade\":8\n        }\n    ],\n    \"endereco\":{\n        \"rua\":\"Campo Florido\",\n        \"numero\":351,\n        \"cidade\": \"Belo Horizonte\",\n        \"estado\": \"MG\"\n    }\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/loja/exception/1/1",
+					"raw": "http://localhost:8080/loja/exception/:exception/:service",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -38,8 +38,18 @@
 					"path": [
 						"loja",
 						"exception",
-						"1",
-						"1"
+						":exception",
+						":service"
+					],
+					"variable": [
+						{
+							"key": "exception",
+							"value": "3"
+						},
+						{
+							"key": "service",
+							"value": "3"
+						}
 					]
 				}
 			},
