@@ -1,11 +1,8 @@
 <template>
   <meu-box>
     <div class="columns clicavel" @click="tarefaClicada">
-      <div class="column is-4">
-        {{ tarefa.descricao || "Tarefa sem descrição" }}
-      </div>
       <div class="column">
-        <meu-cronometro :tempoEmSegundos="tarefa.duracaoEmSegudos" />
+        {{ tarefa.descricao || "Tarefa sem descrição" }}
       </div>
       <div class="column is-3">
         {{ tarefa.projeto?.nome || "N/D" }}
