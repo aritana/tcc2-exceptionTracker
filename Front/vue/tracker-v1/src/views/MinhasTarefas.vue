@@ -20,11 +20,18 @@
       </p>
     </div>
 
-    <tarefa
+    <!-- <tarefa
       v-for="(tarefa, index) in tarefas"
       :key="index"
       :tarefa="tarefa"
       @aoTarefaClicada="selecionarTarefa"
+    /> -->
+
+    <exception
+      v-for="(exception, index) in exceptions"
+      :key="index"
+      :exception="exception"
+      @aoExceptionClicada="selecionarTarefa"
     />
     <MeuModal :mostrar="tarefaSelecionada != null">
       <template v-slot:cabecalho>
@@ -56,63 +63,63 @@
 
 <script lang="ts">
 import ITarefa from "@/interfaces/ITarefa";
+import IException from "@/interfaces/IException";
 import { useStore } from "@/store";
 import {
   ALTERAR_TAREFA,
   CADASTRAR_TAREFA,
   OBTER_PROJETOS,
   OBTER_TAREFAS,
+  OBTER_EXCECOES
 } from "@/store/tipo-acoes";
 import { computed, defineComponent, ref, watchEffect } from "vue";
 import MeuBox from "../components/MeuBox.vue";
-import Formulario from "../components/MeuFormulario.vue";
-import Tarefa from "../components/MinhaTarefa.vue";
+//import Tarefa from "../components/MinhaTarefa.vue";
+import Exception from "../components/MinhaException.vue";
 import MeuModal from "../components/MeuModal.vue";
 
 export default defineComponent({
-  components: { Tarefa, MeuBox, MeuModal },
+  components: { MeuBox, MeuModal,Exception },
   name: "App",
   data() {
     //trabalhar com o modal do buma
 
-    return {
-      tarefaSelecionada: null as ITarefa | null,
+    return {    
+      exceptionSelecionada: null as IException | null,
     };
   },
   methods: {
     salvarTarefa(tarefa: ITarefa) {
-      this.store.dispatch(CADASTRAR_TAREFA, tarefa);
+      //this.store.dispatch(CADASTRAR_TAREFA, tarefa);
     },
     selecionarTarefa(tarefa: ITarefa) {
-      this.tarefaSelecionada = tarefa;
+    //  this.tarefaSelecionada = tarefa;
     },
     fecharModal() {
-      this.tarefaSelecionada = null; //sem tarefas
+    //  this.tarefaSelecionada = null; //sem tarefas
     },
     alterarTarefa() {
-      this.store
-        .dispatch(ALTERAR_TAREFA, this.tarefaSelecionada)
-        .then(() => this.fecharModal());
+     // this.store
+    //    .dispatch(ALTERAR_TAREFA, this.tarefaSelecionada)
+     //   .then(() => this.fecharModal());
+    },
+    selecionarExcecao(exception: IException) {
+      this.exceptionSelecionada = exception;
     },
   },
   computed: {
-    listaEstaVazia(): boolean {
-      return this.tarefas.length == 0;
-    },
+  //  listaEstaVazia(): boolean {
+  //    return this.tarefas.length == 0;
+  //  },
   },
   setup() {
     // monta a store
     const store = useStore();
     store.dispatch(OBTER_TAREFAS); //axion, acao
     store.dispatch(OBTER_PROJETOS);
+    store.dispatch(OBTER_EXCECOES);
 
     const filtro = ref("");
-
-    // const tarefas = computed(() =>
-    //   store.state.tarefas.filter(
-    //     (t) => !filtro.value || t.descricao.includes(filtro.value)
-    //   )
-    // );
 
     //para aplicar filtros no back end, reagir a operacoes
     watchEffect(() => {
@@ -120,8 +127,8 @@ export default defineComponent({
       store.dispatch(OBTER_TAREFAS, filtro.value);
     });
 
-    return {
-      tarefas: computed(() => store.state.tarefas),
+    return {  
+      exceptions: computed(() => store.state.exceptions),
       store,
       filtro,
     };

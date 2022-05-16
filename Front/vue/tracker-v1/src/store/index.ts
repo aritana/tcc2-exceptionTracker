@@ -6,16 +6,19 @@ import {
   ALTERA_TAREFA,
   DEFINIR_TAREFAS,
   NOTIFICAR,
+  DEFINIR_EXCECOES
 } from "./tiposMutacoes";
-import { ALTERAR_TAREFA, CADASTRAR_TAREFA, OBTER_TAREFAS } from "./tipo-acoes";
+import { ALTERAR_TAREFA, CADASTRAR_TAREFA, OBTER_TAREFAS,OBTER_EXCECOES } from "./tipo-acoes";
 import http from "@/http";
 import ITarefa from "@/interfaces/ITarefa";
+import IException from "@/interfaces/IException"
 import { EstadoProjeto, projeto } from "./modulos/projeto";
 
 export interface Estado {
   notificacoes: INotificacao[];
   tarefas: ITarefa[];
   projeto: EstadoProjeto;
+  exceptions:IException[];
 }
 //configurar chave de acesso
 
@@ -29,6 +32,7 @@ export const store = createStore<Estado>({
     projeto: {
       projetos: [],
     },
+    exceptions: [],
   },
   //add sutff in the state
   mutations: {
@@ -52,6 +56,10 @@ export const store = createStore<Estado>({
             (notificacao) => notificacao.id != novaNotificacao.id
           );
         }, 2000);
+    },
+    [DEFINIR_EXCECOES](state, exceptions:IException[]) {
+      //mutation para pegar projeto do back
+      state.exceptions = exceptions;
     },
   }, //nao posso fazer operacoes assincronas nas mutations, para vuex, utilizo, actions
 
@@ -78,6 +86,17 @@ export const store = createStore<Estado>({
         .put(`tarefas/${tarefa.id}`, tarefa)
         .then(() => commit(ALTERA_TAREFA, tarefa)); //ja salva o estado
       // .then((resposta) => commit(ALTERA_TAREFA, tarefa)); //ja salva o estado
+    },
+    [OBTER_EXCECOES]({ commit }, filtro: string) {
+      //commit, quando resolver a requisicao, eu altero o estado
+
+      let url = "exceptions";
+
+      if (filtro) {
+        url += "?descricao=" + filtro;
+      }
+
+      http.get(url).then((resposta) => commit(DEFINIR_EXCECOES, resposta.data)); //Mutacao e dados
     },
   },
   modules: {
