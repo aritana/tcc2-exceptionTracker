@@ -1,11 +1,17 @@
 <template>
   <meu-box>
     <div class="columns clicavel" @click="exceptionClicada">
-      <div class="column">
+      <div class="column is-3">
+        {{ exception._id|| "Exception sem microserviço vinculado" }}
+      </div>
+      <div class="column is-2">
         {{ exception.service || "Exception sem microserviço vinculado" }}
       </div>
-      <div class="column is-3">
+      <div class="column is-2">
         {{ exception.traceId}}
+      </div>
+      <div class="column is-5">
+        {{ exception.exception}}
       </div>
     </div>
   </meu-box>

@@ -1,6 +1,4 @@
 <template>
-  <!-- <formulario @aoSalvarTarefa="salvarTarefa" /> -->
-
   <div class="lista">
     <meu-box v-if="listaEstaVazia">
       Você está muito produtivo hoje? :)
@@ -20,20 +18,23 @@
       </p>
     </div>
 
-    <!-- <tarefa
-      v-for="(tarefa, index) in tarefas"
-      :key="index"
-      :tarefa="tarefa"
-      @aoTarefaClicada="selecionarTarefa"
-    /> -->
+    <div class="box" :style="estilos">
+      <div class="columns">
+        <div class="column is-3">Id</div>
+        <div class="column is-2">Service</div>
+        <div class="column is-2">TraceId</div>
+        <div class="column">Exception</div>
+      </div>
+    </div>
 
     <exception
       v-for="(exception, index) in exceptions"
       :key="index"
       :exception="exception"
-      @aoExceptionClicada="selecionarTarefa"
+      @aoExceptionClicada="selecionarExcecao"
     />
-    <MeuModal :mostrar="tarefaSelecionada != null">
+
+    <MeuModal :mostrar="exceptionSelecionada != null">
       <template v-slot:cabecalho>
         <p class="modal-card-title">Editando uma tarefa</p>
         <button @click="fecharModal" class="delete" aria-label="close"></button>
@@ -41,12 +42,12 @@
 
       <template v-slot:corpo>
         <div class="field">
-          <label for="descricaoDaTarefa" class="label"> Descrição </label>
+          <label for="descricaoDaException" class="label"> TraceId </label>
           <input
             type="text"
             class="input"
-            v-model="tarefaSelecionada.descricao"
-            id="descricaoDaTarefa"
+            v-model="exceptionSelecionada.traceId"
+            id="descricaoDaException"
           />
         </div>
       </template>
@@ -70,21 +71,20 @@ import {
   CADASTRAR_TAREFA,
   OBTER_PROJETOS,
   OBTER_TAREFAS,
-  OBTER_EXCECOES
+  OBTER_EXCECOES,
 } from "@/store/tipo-acoes";
 import { computed, defineComponent, ref, watchEffect } from "vue";
 import MeuBox from "../components/MeuBox.vue";
-//import Tarefa from "../components/MinhaTarefa.vue";
 import Exception from "../components/MinhaException.vue";
 import MeuModal from "../components/MeuModal.vue";
 
 export default defineComponent({
-  components: { MeuBox, MeuModal,Exception },
+  components: { MeuBox, MeuModal, Exception },
   name: "App",
   data() {
     //trabalhar com o modal do buma
 
-    return {    
+    return {
       exceptionSelecionada: null as IException | null,
     };
   },
@@ -92,30 +92,26 @@ export default defineComponent({
     salvarTarefa(tarefa: ITarefa) {
       //this.store.dispatch(CADASTRAR_TAREFA, tarefa);
     },
-    selecionarTarefa(tarefa: ITarefa) {
-    //  this.tarefaSelecionada = tarefa;
-    },
     fecharModal() {
-    //  this.tarefaSelecionada = null; //sem tarefas
+      this.exceptionSelecionada = null; //sem tarefas
     },
     alterarTarefa() {
-     // this.store
-    //    .dispatch(ALTERAR_TAREFA, this.tarefaSelecionada)
-     //   .then(() => this.fecharModal());
+      // this.store
+      //    .dispatch(ALTERAR_TAREFA, this.tarefaSelecionada)
+      //   .then(() => this.fecharModal());
     },
     selecionarExcecao(exception: IException) {
       this.exceptionSelecionada = exception;
     },
   },
   computed: {
-  //  listaEstaVazia(): boolean {
-  //    return this.tarefas.length == 0;
-  //  },
+    //  listaEstaVazia(): boolean {
+    //    return this.tarefas.length == 0;
+    //  },
   },
   setup() {
     // monta a store
     const store = useStore();
-    store.dispatch(OBTER_TAREFAS); //axion, acao
     store.dispatch(OBTER_PROJETOS);
     store.dispatch(OBTER_EXCECOES);
 
@@ -127,11 +123,18 @@ export default defineComponent({
       store.dispatch(OBTER_TAREFAS, filtro.value);
     });
 
-    return {  
+    return {
       exceptions: computed(() => store.state.exceptions),
       store,
       filtro,
+      estilos: {
+        //camelCase
+        backgroundColor: "#B0E0E6",
+      },
     };
   },
 });
 </script>
+
+<style scoped>
+</style>

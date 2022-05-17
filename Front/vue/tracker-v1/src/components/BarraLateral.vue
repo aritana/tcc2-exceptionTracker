@@ -57,31 +57,32 @@ export default defineComponent({
 </script>
 
 <style scoped>
-  header {
-    padding: 1rem;
-    background: #0d3b66;
-    width: 100%;
-    height: 100vh;
-    text-align: center;
-  }
-  /* mobile */
-  @media only screen and (max-width: 768px) {
-    header {
-      padding: 2.5rem;
-      height: auto;
-    }
-  }
+header {
+  padding: 1rem;
+  background: #0d3b66;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
 
-  .panel li {
-    margin: 8px 0;
+/* mobile */
+@media only screen and (max-width: 768px) {
+  header {
+    padding: 2.5rem;
+    height: auto;
   }
-  .link {
-    color: #fff;
-  }
-  .link:hover {
-    color: #faf0ca;
-  }
-  .link.router-link-active {
-    color: #faf0ca;
-  }
+}
+
+.panel li {
+  margin: 8px 0;
+}
+.link {
+  color: #fff;
+}
+.link:hover {
+  color: #faf0ca;
+}
+.link.router-link-active {
+  color: #faf0ca;
+}
 </style>
