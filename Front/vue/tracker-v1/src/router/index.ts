@@ -3,6 +3,7 @@ import Tarefas from "../views/MinhasTarefas.vue";
 import Projetos from "../views/MeusProjetos.vue";
 import Formulario from "../views/projects/MeuFormulario.vue";
 import Lista from "../views/projects/MinhaLista.vue";
+import Grafo from "../views/MeuGrafo.vue";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -31,6 +32,11 @@ const routes: RouteRecordRaw[] = [
         props: true, //injeta como uma props
       },
     ],
+  },
+  {
+    path: "/graph",
+    name: "Grafo",
+    component: Grafo,
   },
 ];
 const router = createRouter({
