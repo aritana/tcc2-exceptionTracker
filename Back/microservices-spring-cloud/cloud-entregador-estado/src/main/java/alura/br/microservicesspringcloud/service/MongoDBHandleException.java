@@ -58,5 +58,5 @@ public class MongoDBHandleException {
         exceptionCollection.insertOne(exceptionDocument);
     }
 
-    //Todo lembre se fechar o banco
+    //Todo lembre-se fechar o banco
 }

@@ -53,8 +53,8 @@
       </template>
 
       <template v-slot:rodape>
-        <button @click="alterarTarefa" class="button is-success">
-          Salvar alterações
+        <button @click="verCausaRaiz" class="button is-success">
+          Ver Causa Raiz
         </button>
         <button @click="fecharModal" class="button">Cancelar</button>
       </template>
@@ -72,6 +72,7 @@ import {
   OBTER_PROJETOS,
   OBTER_TAREFAS,
   OBTER_EXCECOES,
+  OBTER_CLASSE,
 } from "@/store/tipo-acoes";
 import { computed, defineComponent, ref, watchEffect } from "vue";
 import MeuBox from "../components/MeuBox.vue";
@@ -95,10 +96,11 @@ export default defineComponent({
     fecharModal() {
       this.exceptionSelecionada = null; //sem tarefas
     },
-    alterarTarefa() {
-      // this.store
-      //    .dispatch(ALTERAR_TAREFA, this.tarefaSelecionada)
-      //   .then(() => this.fecharModal());
+    verCausaRaiz() {
+      this.store.dispatch(OBTER_CLASSE, this.exceptionSelecionada).then(() => {
+        this.fecharModal();
+        this.$router.push("/graph");
+      });
     },
     selecionarExcecao(exception: IException) {
       this.exceptionSelecionada = exception;
@@ -136,5 +138,3 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-</style>

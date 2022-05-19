@@ -69,6 +69,9 @@ class ExceptionsController {
         let filePath = '';
 
         const exceptionId = req.query.exceptionid;
+        const textClass = {
+            classe: ""
+        };
 
         exceptions.findById(exceptionId)
             .exec(async (err, exception) => {
@@ -77,8 +80,9 @@ class ExceptionsController {
                     filePath = exceptionRequired.path;
                     try {
                         const encoding = 'utf-8';
-                        const text = await promises.readFile(filePath, encoding);
-                        res.status(200).json(text)
+                        let text = await promises.readFile(filePath, encoding);
+                        textClass.classe = text
+                        res.status(200).json(textClass)
                     } catch (error) {
                         treatError(error)
                     }

@@ -6,19 +6,28 @@ import {
   ALTERA_TAREFA,
   DEFINIR_TAREFAS,
   NOTIFICAR,
-  DEFINIR_EXCECOES
+  DEFINIR_EXCECOES,
+  DEFINIR_CLASSE,
 } from "./tiposMutacoes";
-import { ALTERAR_TAREFA, CADASTRAR_TAREFA, OBTER_TAREFAS,OBTER_EXCECOES } from "./tipo-acoes";
+import {
+  ALTERAR_TAREFA,
+  CADASTRAR_TAREFA,
+  OBTER_TAREFAS,
+  OBTER_EXCECOES,
+  OBTER_CLASSE,
+} from "./tipo-acoes";
 import http from "@/http";
 import ITarefa from "@/interfaces/ITarefa";
-import IException from "@/interfaces/IException"
+import IException from "@/interfaces/IException";
+import IClasse from "@/interfaces/IClasse";
 import { EstadoProjeto, projeto } from "./modulos/projeto";
 
 export interface Estado {
   notificacoes: INotificacao[];
   tarefas: ITarefa[];
   projeto: EstadoProjeto;
-  exceptions:IException[];
+  exceptions: IException[];
+  classe: IClasse;
 }
 //configurar chave de acesso
 
@@ -33,6 +42,7 @@ export const store = createStore<Estado>({
       projetos: [],
     },
     exceptions: [],
+    classe: { classe: "" },
   },
   //add sutff in the state
   mutations: {
@@ -57,9 +67,16 @@ export const store = createStore<Estado>({
           );
         }, 2000);
     },
-    [DEFINIR_EXCECOES](state, exceptions:IException[]) {
-      //mutation para pegar projeto do back
-      state.exceptions = exceptions;
+    [DEFINIR_EXCECOES](state, exceptions: IException[]) {
+      //remove excecoes em causa
+      state.exceptions = exceptions.filter(
+        (exception) => exception.causedBy.length != 0
+      );
+    },
+    [DEFINIR_CLASSE](state, classe: IClasse) {
+      state.classe = classe;
+
+      console.log("state.classe");
     },
   }, //nao posso fazer operacoes assincronas nas mutations, para vuex, utilizo, actions
 
@@ -97,6 +114,17 @@ export const store = createStore<Estado>({
       }
 
       http.get(url).then((resposta) => commit(DEFINIR_EXCECOES, resposta.data)); //Mutacao e dados
+    },
+    [OBTER_CLASSE]({ commit }, filtro: string) {
+      //commit, quando resolver a requisicao, eu altero o estado
+
+      const url = "classe";
+
+      if (filtro) {
+        //  url += "?descricao=" + filtro;
+      }
+
+      http.get(url).then((resposta) => commit(DEFINIR_CLASSE, resposta.data)); //Mutacao e dados
     },
   },
   modules: {
