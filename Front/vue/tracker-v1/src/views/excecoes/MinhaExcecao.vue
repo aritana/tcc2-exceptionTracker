@@ -7,7 +7,7 @@ k<template>
       <span>Voltar</span>
     </router-link>
 
-    <router-link to="/classe" class="button">
+    <router-link to="/excecoes/classe" class="button">
       <span class="icon-is-small">
         <i class="fa-solid fa-file-code"></i>
       </span>
@@ -17,7 +17,7 @@ k<template>
     <table class="table is-fullwidth">
       <thead>
         <tr>
-          <th>Causa</th>
+          <th>Causas</th>
         </tr>
       </thead>
       <tbody>
@@ -62,7 +62,7 @@ export default defineComponent({
   computed: {
     monitoraException(): string[] | undefined {
       const ex = this.store.state.exceptions.find(
-        (ex: IException) => ex.traceId == "65a0da7b11716b5e"
+        (ex: IException) => ex.traceId == this.$route.params.id
       );
       const causedBy = ex?.causedBy;
       return causedBy;
@@ -91,9 +91,11 @@ span {
   margin-left: 5px;
 }
 
-tr {
-  border-color: blue;
-  border: 1px solid;
+table,
+th,
+td {
+  margin-top: 10px;
+  border: 1px solid blue;
 }
 
 tr:last-child.last {

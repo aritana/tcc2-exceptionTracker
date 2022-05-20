@@ -5,6 +5,7 @@ import MinhasExcecoes from "../views/MinhasExcecoes.vue";
 
 import Formulario from "../views/projects/MeuFormulario.vue";
 import Excecao from "../views/excecoes/MinhaExcecao.vue";
+import Classe from "../views/excecoes/MinhaClasse.vue";
 
 import Lista from "../views/projects/MinhaLista.vue";
 import Grafo from "../views/MeuGrafo.vue";
@@ -48,8 +49,8 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: "classe",
-        name: "Novo projeto",
-        component: Formulario,
+        name: "Classe",
+        component: Classe,
       },
     ],
   },
