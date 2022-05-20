@@ -98,8 +98,8 @@ export default defineComponent({
     },
     verCausaRaiz() {
       this.store.dispatch(OBTER_CLASSE, this.exceptionSelecionada).then(() => {
+        this.$router.push(`/excecoes/${this.exceptionSelecionada?.traceId}`);
         this.fecharModal();
-        this.$router.push("/graph");
       });
     },
     selecionarExcecao(exception: IException) {

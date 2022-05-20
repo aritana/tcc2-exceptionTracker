@@ -3,7 +3,7 @@ import { promises, readFile } from 'fs';
 
 //const filePath = './files/text1.md';
 
-const filePath = '/home/aritana/Documentos/*.csv';
+const filePath = '/home/aritana/Documentos/';
 
 
 

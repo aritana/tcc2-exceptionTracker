@@ -6,19 +6,49 @@ const constPath = '/src/main/java/alura/br/microservicesspringcloud'
 
 const path = basePath + constPath;
 
-let file = readdirSync(path).filter(fn => fn.endsWith('ExceptionGenerator.java'));
-let dirs = readdirSync(path).filter(fn => fn.search('ExceptionGenerator.java'));
-if (file = []) {
-    console.log('file', file)
-}
+let file = [];
+let dirs = [];
 
-for (let dir of dirs) {
 
-    if (lstatSync(path + '/' + dir).isDirectory()) {
-        console.log(dir)
+
+
+    file = readdirSync(path).filter(fn => fn.endsWith('ExceptionGenerator.java'));
+    dirs = readdirSync(path).filter(fn => fn.search('ExceptionGenerator.java'));
+
+    for (let dir of dirs) {
+
+        if (lstatSync(path + '/' + dir).isDirectory()) {
+
+            do {
+
+
+            } while ();
+
+        }
     }
 
+
+
+
+
+
+
+if (file = []) { // nao encontrou o arquivo
+    for (let dir of dirs) {
+
+        if (lstatSync(path + '/' + dir).isDirectory()) {
+
+            do {
+
+
+            } while ();
+
+        }
+
+    }
 }
+
+
 
 //let file = readdirSync(path).filter(fn => fn.endsWith('ExceptionGenerator.java'));
 

@@ -1,7 +1,11 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import Tarefas from "../views/MinhasTarefas.vue";
 import Projetos from "../views/MeusProjetos.vue";
+import MinhasExcecoes from "../views/MinhasExcecoes.vue";
+
 import Formulario from "../views/projects/MeuFormulario.vue";
+import Excecao from "../views/excecoes/MinhaExcecao.vue";
+
 import Lista from "../views/projects/MinhaLista.vue";
 import Grafo from "../views/MeuGrafo.vue";
 
@@ -30,6 +34,22 @@ const routes: RouteRecordRaw[] = [
         name: "Editar projeto",
         component: Formulario,
         props: true, //injeta como uma props
+      },
+    ],
+  },
+  {
+    path: "/excecoes",
+    component: MinhasExcecoes,
+    children: [
+      {
+        path: ":id",
+        name: "Excecao",
+        component: Excecao,
+      },
+      {
+        path: "classe",
+        name: "Novo projeto",
+        component: Formulario,
       },
     ],
   },

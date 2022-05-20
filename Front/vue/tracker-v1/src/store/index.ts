@@ -21,6 +21,7 @@ import ITarefa from "@/interfaces/ITarefa";
 import IException from "@/interfaces/IException";
 import IClasse from "@/interfaces/IClasse";
 import { EstadoProjeto, projeto } from "./modulos/projeto";
+import router from "@/router";
 
 export interface Estado {
   notificacoes: INotificacao[];
