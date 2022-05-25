@@ -7,7 +7,10 @@ k<template>
       <span>Voltar</span>
     </router-link>
 
-    <router-link to="/excecoes/classe" class="button">
+    <router-link
+      :to="`/excecoes/classe/${this.$route.params.id}`"
+      class="button"
+    >
       <span class="icon-is-small">
         <i class="fa-solid fa-file-code"></i>
       </span>
@@ -21,7 +24,7 @@ k<template>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="cause in monitoraException" :key="cause.length" class="last">
+        <tr v-for="cause in pegarException" :key="cause.length" class="last">
           <td>{{ cause }}</td>
         </tr>
       </tbody>
@@ -42,25 +45,8 @@ export default defineComponent({
       type: String,
     },
   },
-
-  data() {
-    return {
-      exception: {
-        _id: "627c5134af4e7201259d9a02",
-        service: "fornecedorCidade",
-        traceId: "102190a670ea42d9",
-        exception:
-          "alura.br.microservicesspringcloud.exception.NotFoundException: Sintaxe inválida",
-        causedBy: [
-          "java.util.NoSuchElementException: Classe não Encontrada - Class: ExceptionGenerator - Method: nullPointerExceptionExceptionInitCauseGenerator - Line: 53",
-          "java.lang.NullPointerException - Class: ExceptionGenerator - Method: nullPointerExceptionExceptionInitCauseGenerator - Line: 50",
-        ],
-        path: "/home/aritana/Downloads/Cefet/cefet2021-b/Tcc1/code/tcc2-exceptionTracker/Back/microservices-spring-cloud/cloud-entregador-cidade/src/main/java/alura/br/microservicesspringcloud/service/ExceptionGenerator.java",
-      },
-    };
-  },
   computed: {
-    monitoraException(): string[] | undefined {
+    pegarException(): string[] | undefined {
       const ex = this.store.state.exceptions.find(
         (ex: IException) => ex.traceId == this.$route.params.id
       );

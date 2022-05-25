@@ -7,22 +7,22 @@ k<template>
       <span>Voltar</span>
     </router-link>
 
-    <router-link to="/excecoes/classe" class="button">
-      <span class="icon-is-small">
-        <i class="fa-solid fa-file-code"></i>
-      </span>
-      <span>Ver Classe</span>
-    </router-link>
-
     <table class="table is-fullwidth">
       <thead>
         <tr>
-          <th>Classe de onde o erro foi progapado inicialmente</th>
+          <th>
+            Link do Git Hub para exibição da classe de onde o erro foi progapado
+            inicialmente:
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>{{ monitoraClasse[0].classe }}</td>
+          <td>
+            <a v-bind:href="`${pegarPathGithubException}`" target="_blank">
+              {{ pegarPathGithubException }}
+            </a>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -34,6 +34,7 @@ import { computed, defineComponent, ref, watchEffect } from "vue";
 import { useStore } from "@/store";
 import { OBTER_EXCECOES, REMOVER_PROJETO } from "@/store/tipo-acoes";
 import IClasse from "@/interfaces/IClasse";
+import IException from "@/interfaces/IException";
 
 export default defineComponent({
   name: "MinhaLista",
@@ -46,6 +47,13 @@ export default defineComponent({
   computed: {
     monitoraClasse(): IClasse | undefined {
       return this.store.state.classe;
+    },
+    pegarPathGithubException(): string | undefined {
+      const ex = this.store.state.exceptions.find(
+        (ex: IException) => ex.traceId == this.$route.params.id
+      );
+      const pathGithub = ex?.path;
+      return pathGithub;
     },
   },
   //Vuex
@@ -75,5 +83,25 @@ th,
 td {
   margin-top: 10px;
   border: 1px solid blue;
+}
+
+/* unvisited link */
+a:link {
+  color: red;
+}
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: blue;
 }
 </style>

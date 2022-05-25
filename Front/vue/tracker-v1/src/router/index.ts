@@ -48,7 +48,7 @@ const routes: RouteRecordRaw[] = [
         component: Excecao,
       },
       {
-        path: "classe",
+        path: "classe/:id",
         name: "Classe",
         component: Classe,
       },

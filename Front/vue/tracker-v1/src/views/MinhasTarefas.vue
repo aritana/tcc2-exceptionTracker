@@ -36,7 +36,7 @@
 
     <MeuModal :mostrar="exceptionSelecionada != null">
       <template v-slot:cabecalho>
-        <p class="modal-card-title">Editando uma tarefa</p>
+        <p class="modal-card-title">Causa Raiz</p>
         <button @click="fecharModal" class="delete" aria-label="close"></button>
       </template>
 
@@ -123,6 +123,7 @@ export default defineComponent({
     watchEffect(() => {
       console.log(filtro.value);
       store.dispatch(OBTER_TAREFAS, filtro.value);
+
     });
 
     return {

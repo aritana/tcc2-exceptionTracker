@@ -12,7 +12,7 @@
         <li>
           <router-link to="/" class="link">
             <i class="fas fa-tasks"></i>
-            tarefas
+            exceptions
           </router-link>
         </li>
         <li>
