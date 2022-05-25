@@ -160,7 +160,18 @@
             "exception": "alura.br.microservicesspringcloud.exception.NotFoundException",
             "causedBy": [],
             "path": "/home/aritana/Downloads/Cefet/cefet2021-b/Tcc1/code/tcc2-exceptionTracker/Back/microservices-spring-cloud/cloud-loja/src/main/java/.java"
-        }
+        },
+        {
+              "_id": "628d83a42c4f874dc6c47bfb",
+              "service": "loja",
+              "traceId": "a378467f566728ff",
+              "exception": "alura.br.microservicesspringcloud.exception.ServerErrorException: Falha Interna",
+              "causedBy": [
+                  "java.io.IOException: Falha ao obter informações do arquivo - Class: ExceptionGenerator - Method: arithmeticExceptionInitCauseGenerator - Line: 22",
+                  "java.lang.ArithmeticException: / by zero - Class: ExceptionGenerator - Method: arithmeticExceptionInitCauseGenerator - Line: 18"
+              ],
+              "path": "https://github.com/aritana/tcc2-exceptionTracker/blob/master/Back/microservices-spring-cloud/cloud-entregador-estado/src/main/java/alura/br/microservicesspringcloud/service/ExceptionGenerator.java"
+          }
     ],
 "classe":[
 {

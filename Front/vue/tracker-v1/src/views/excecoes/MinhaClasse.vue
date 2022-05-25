@@ -17,7 +17,7 @@ k<template>
     <table class="table is-fullwidth">
       <thead>
         <tr>
-          <th>Causas</th>
+          <th>Classe de onde o erro foi progapado inicialmente</th>
         </tr>
       </thead>
       <tbody>
