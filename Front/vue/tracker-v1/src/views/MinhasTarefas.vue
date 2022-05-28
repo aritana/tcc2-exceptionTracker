@@ -9,7 +9,7 @@
         <input
           class="input"
           type="text"
-          placeholder="Digite para filtrar"
+          placeholder="Digite para filtrar por TraceId"
           v-model="filtro"
         />
         <span class="icon is-small is-left">
@@ -20,10 +20,18 @@
 
     <div class="box" :style="estilos">
       <div class="columns">
-        <div class="column is-3">Id</div>
-        <div class="column is-2">Service</div>
-        <div class="column is-2">TraceId</div>
-        <div class="column">Exception</div>
+        <div class="column is-2">
+          <strong>TraceId</strong>
+        </div>
+        <div class="column is-2">
+          <strong>Service</strong>
+        </div>
+        <div class="column is-3">
+          <strong>Id</strong>
+        </div>
+        <div class="column">
+          <strong>Exception</strong>
+        </div>
       </div>
     </div>
 
@@ -63,18 +71,10 @@
 </template>
 
 <script lang="ts">
-import ITarefa from "@/interfaces/ITarefa";
 import IException from "@/interfaces/IException";
 import { useStore } from "@/store";
-import {
-  ALTERAR_TAREFA,
-  CADASTRAR_TAREFA,
-  OBTER_PROJETOS,
-  OBTER_TAREFAS,
-  OBTER_EXCECOES,
-  OBTER_CLASSE,
-} from "@/store/tipo-acoes";
-import { computed, defineComponent, ref, watchEffect } from "vue";
+import { OBTER_EXCECOES, OBTER_CLASSE } from "@/store/tipo-acoes";
+import { computed, defineComponent, ref } from "vue";
 import MeuBox from "../components/MeuBox.vue";
 import Exception from "../components/MinhaException.vue";
 import MeuModal from "../components/MeuModal.vue";
@@ -84,17 +84,13 @@ export default defineComponent({
   name: "App",
   data() {
     //trabalhar com o modal do buma
-
     return {
       exceptionSelecionada: null as IException | null,
     };
   },
   methods: {
-    salvarTarefa(tarefa: ITarefa) {
-      //this.store.dispatch(CADASTRAR_TAREFA, tarefa);
-    },
     fecharModal() {
-      this.exceptionSelecionada = null; //sem tarefas
+      this.exceptionSelecionada = null;
     },
     verCausaRaiz() {
       this.store.dispatch(OBTER_CLASSE, this.exceptionSelecionada).then(() => {
@@ -106,28 +102,20 @@ export default defineComponent({
       this.exceptionSelecionada = exception;
     },
   },
-  computed: {
-    //  listaEstaVazia(): boolean {
-    //    return this.tarefas.length == 0;
-    //  },
-  },
   setup() {
     // monta a store
     const store = useStore();
-    store.dispatch(OBTER_PROJETOS);
     store.dispatch(OBTER_EXCECOES);
 
     const filtro = ref("");
 
-    //para aplicar filtros no back end, reagir a operacoes
-    watchEffect(() => {
-      console.log(filtro.value);
-      store.dispatch(OBTER_TAREFAS, filtro.value);
-
-    });
-
+    let exceptions = computed(() =>
+      store.state.exceptions.filter(
+        (ex) => !filtro.value || ex.traceId.includes(filtro.value)
+      )
+    );
     return {
-      exceptions: computed(() => store.state.exceptions),
+      exceptions,
       store,
       filtro,
       estilos: {

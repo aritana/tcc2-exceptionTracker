@@ -20,12 +20,20 @@ k<template>
     <table class="table is-fullwidth">
       <thead>
         <tr>
-          <th>Causas</th>
+          <th>
+            Chained Exceptions: A última exceção na tabela é a exceção raiz.
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="cause in pegarException" :key="cause.length" class="last">
           <td>{{ cause }}</td>
+          <td>
+            Caused By:
+            <span class="icon-is-small">
+              <i class="fa-solid fa-arrow-down-wide-short"></i>I
+            </span>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -33,9 +41,9 @@ k<template>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, watchEffect } from "vue";
+import { computed, defineComponent } from "vue";
 import { useStore } from "@/store";
-import { OBTER_EXCECOES, REMOVER_PROJETO } from "@/store/tipo-acoes";
+import { OBTER_EXCECOES } from "@/store/tipo-acoes";
 import IException from "@/interfaces/IException";
 
 export default defineComponent({

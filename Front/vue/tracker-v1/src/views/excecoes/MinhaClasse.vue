@@ -30,9 +30,8 @@ k<template>
 </template>
 
 <script lang="ts" >
-import { computed, defineComponent, ref, watchEffect } from "vue";
+import { computed, defineComponent } from "vue";
 import { useStore } from "@/store";
-import { OBTER_EXCECOES, REMOVER_PROJETO } from "@/store/tipo-acoes";
 import IClasse from "@/interfaces/IClasse";
 import IException from "@/interfaces/IException";
 
