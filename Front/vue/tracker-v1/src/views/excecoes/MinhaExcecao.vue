@@ -11,10 +11,10 @@ k<template>
       :to="`/excecoes/classe/${this.$route.params.id}`"
       class="button"
     >
-      <span class="icon-is-small">
+      <span class="button icon-is-small">
+        <span>Ver Classe</span>
         <i class="fa-solid fa-file-code"></i>
       </span>
-      <span>Ver Classe</span>
     </router-link>
 
     <table class="table is-fullwidth">
@@ -37,13 +37,21 @@ k<template>
         </tr>
       </tbody>
     </table>
+    <div>
+      <button class="button ml-2 is-danger" @click="excluir()">
+        <h1>Delete Exception Register</h1>
+        <span class="icon is-small">
+          <i class="fas fa-trash"></i>
+        </span>
+      </button>
+    </div>
   </section>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from "vue";
 import { useStore } from "@/store";
-import { OBTER_EXCECOES } from "@/store/tipo-acoes";
+import { OBTER_EXCECOES, REMOVER_EXCEPTION } from "@/store/tipo-acoes";
 import IException from "@/interfaces/IException";
 
 export default defineComponent({
@@ -60,6 +68,12 @@ export default defineComponent({
       );
       const causedBy = ex?.causedBy;
       return causedBy;
+    },
+  },
+  methods: {
+    excluir() {
+      this.store.dispatch(REMOVER_EXCEPTION, this.$route.params.id);
+      console.log(this.$route.params.id);
     },
   },
   //Vuex
@@ -89,7 +103,7 @@ table,
 th,
 td {
   margin-top: 10px;
-  border: 1px solid blue;
+  border: 2px solid blue;
 }
 
 tr:last-child.last {

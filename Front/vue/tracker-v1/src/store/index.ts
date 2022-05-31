@@ -1,16 +1,18 @@
 import { INotificacao } from "@/interfaces/INotificacao";
 import { InjectionKey } from "vue";
 import { createStore, Store, useStore as vuexUseStore } from "vuex";
-import { NOTIFICAR, DEFINIR_EXCECOES, DEFINIR_CLASSE } from "./tiposMutacoes";
-import { OBTER_EXCECOES, OBTER_CLASSE } from "./tipo-acoes";
+import {
+  NOTIFICAR,
+  DEFINIR_EXCECOES,
+  EXCLUIR_EXCEPTION,
+} from "./tiposMutacoes";
+import { OBTER_EXCECOES, REMOVER_EXCEPTION } from "./tipo-acoes";
 import http from "@/http";
 import IException from "@/interfaces/IException";
-import IClasse from "@/interfaces/IClasse";
 
 export interface Estado {
   notificacoes: INotificacao[];
   exceptions: IException[];
-  classe: IClasse;
 }
 //configurar chave de acesso
 
@@ -21,7 +23,6 @@ export const store = createStore<Estado>({
     //estado inicial
     notificacoes: [],
     exceptions: [],
-    classe: { classe: "" },
   },
   //add sutff in the state
   mutations: {
@@ -41,8 +42,9 @@ export const store = createStore<Estado>({
         (exception) => exception.causedBy.length != 0
       );
     },
-    [DEFINIR_CLASSE](state, classe: IClasse) {
-      state.classe = classe;
+    [EXCLUIR_EXCEPTION](state, traceId: string) {
+      //sobrepor
+      state.exceptions = state.exceptions.filter((ex) => ex.traceId != traceId);
     },
   }, //nao posso fazer operacoes assincronas nas mutations, para vuex, utilizo, actions
 
@@ -53,11 +55,11 @@ export const store = createStore<Estado>({
       const url = "exceptions";
       http.get(url).then((resposta) => commit(DEFINIR_EXCECOES, resposta.data)); //Mutacao e
     },
-    [OBTER_CLASSE]({ commit }, filtro: string) {
-      //commit, quando resolver a requisicao, eu altero o estado
-      const url = "classe";
-
-      http.get(url).then((resposta) => commit(DEFINIR_CLASSE, resposta.data)); //Mutacao e dados
+    [REMOVER_EXCEPTION]({ commit }, traceId: string) {
+      //commit de uma mutation
+      return http
+        .delete(`exceptions/traceid/${traceId}`)
+        .then(() => commit(EXCLUIR_EXCEPTION, traceId));
     },
   },
 });

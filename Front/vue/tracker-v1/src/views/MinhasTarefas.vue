@@ -93,10 +93,8 @@ export default defineComponent({
       this.exceptionSelecionada = null;
     },
     verCausaRaiz() {
-      this.store.dispatch(OBTER_CLASSE, this.exceptionSelecionada).then(() => {
-        this.$router.push(`/excecoes/${this.exceptionSelecionada?.traceId}`);
-        this.fecharModal();
-      });
+      this.$router.push(`/excecoes/${this.exceptionSelecionada?.traceId}`);
+      this.fecharModal();
     },
     selecionarExcecao(exception: IException) {
       this.exceptionSelecionada = exception;

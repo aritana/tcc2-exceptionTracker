@@ -32,7 +32,6 @@ k<template>
 <script lang="ts" >
 import { computed, defineComponent } from "vue";
 import { useStore } from "@/store";
-import IClasse from "@/interfaces/IClasse";
 import IException from "@/interfaces/IException";
 
 export default defineComponent({
@@ -44,9 +43,6 @@ export default defineComponent({
   },
 
   computed: {
-    monitoraClasse(): IClasse | undefined {
-      return this.store.state.classe;
-    },
     pegarPathGithubException(): string | undefined {
       const ex = this.store.state.exceptions.find(
         (ex: IException) => ex.traceId == this.$route.params.id
@@ -63,8 +59,6 @@ export default defineComponent({
     //const getTraceId = props.traceId;
 
     return {
-      classe: computed(() => store.state.classe),
-
       store,
     };
   },
