@@ -1,5 +1,6 @@
 package alura.br.microservicesspringcloud.controller;
 
+import alura.br.microservicesspringcloud.exception.ServerErrorException;
 import alura.br.microservicesspringcloud.service.ExceptionComunicator;
 import alura.br.microservicesspringcloud.service.ExceptionGenerator;
 import io.swagger.annotations.Api;
@@ -21,7 +22,7 @@ public class ExceptionController {
     ExceptionComunicator exceptionComunicator;
 
     @GetMapping(value = "/{exceptioncode}/{service}")
-    public void exceptionSelector(@PathVariable("exceptioncode") String exceptionCodeInitCause,@PathVariable("service") String service) {
+    public void exceptionSelector(@PathVariable("exceptioncode") String exceptionCodeInitCause, @PathVariable("service") String service) {
 
         if(service.equals("1")){//The exception will be generated in this service
             switch (exceptionCodeInitCause) {
@@ -35,9 +36,15 @@ public class ExceptionController {
                     exceptionGenerator.nullPointerExceptionExceptionInitCauseGenerator();
                 default:
             }
-        }else{//The exception will be generated in another service
-            exceptionComunicator.sendSignalOfExceptionToBeGenerate( exceptionCodeInitCause, service);
-
+        } else {//The exception will be generated in another service
+            try {
+                exceptionComunicator.sendSignalOfExceptionToBeGenerate(exceptionCodeInitCause, service);
+            } catch (feign.RetryableException exception) {
+                UnsupportedOperationException unsupportedOperationException = new UnsupportedOperationException("Feign failure");
+                unsupportedOperationException.initCause(exception);
+                ServerErrorException serverErrorException = new ServerErrorException("Falha Interna", unsupportedOperationException);
+                throw serverErrorException;
+            }
         }
     }
 }

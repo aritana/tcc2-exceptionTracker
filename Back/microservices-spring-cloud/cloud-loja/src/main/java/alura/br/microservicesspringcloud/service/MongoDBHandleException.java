@@ -24,6 +24,9 @@ public class MongoDBHandleException {
     @Value("${service.path}")
     private String servicePath;
 
+    @Value("${service.base.package}")
+    private String serviceBasePackage;
+
     public void saveException(Exception exception) {
 
         //selecionando mongo database
@@ -38,11 +41,16 @@ public class MongoDBHandleException {
         exceptionDocument.append("exception", exception.toString());
 
         String subPath = "";
+        String basePackage = "";
         while (cause != null) {
             String[] className = cause.getStackTrace()[0].getClassName().split("\\.");
             int classNamePosition = className.length - 1;
 
-            subPath =  cause.getStackTrace()[0].getClassName();
+            basePackage = cause.getStackTrace()[0].getClassName();
+            //avoid context within libraries out of the project's scope
+            if (basePackage.contains(serviceBasePackage)) {
+                subPath = basePackage;
+            }
             String message = cause.toString()
                     + " - Class: " + className[classNamePosition]
                     + " - Method: " + cause.getStackTrace()[0].getMethodName()
@@ -52,11 +60,9 @@ public class MongoDBHandleException {
             cause = cause.getCause();//proxima Exceçao encadeada
         }
         //adiciona array de execoes encadeadas no documento  e insere na coleção
-        subPath = subPath.replaceAll("\\.","/");
+        subPath = subPath.replaceAll("\\.", "/");
         exceptionDocument.append("causedBy", causesString);
-        exceptionDocument.append("path", servicePath+"/" + subPath + ".java");
+        exceptionDocument.append("path", servicePath + "/" + subPath + ".java");
         exceptionCollection.insertOne(exceptionDocument);
     }
-
-    //Todo lembre-se de fechar o banco
 }
