@@ -1,0 +1,181 @@
+{
+  "projetos": [
+    {
+      "id": 1,
+      "nome": "Alura Tracker"
+    },
+    {
+      "id": 2,
+      "nome": "Monitoria1"
+    },
+    {
+      "nome": "amassar pao",
+      "id": 3
+    },
+    {
+      "nome": "teste",
+      "id": 4
+    }
+  ],
+  "tarefas": [
+    {
+      "id": 1,
+      "duracaoEmSegudos": 60,
+      "descricao": "configuração do ambiente2",
+      "projeto": {
+        "id": 1,
+        "nome": "Alura Tracker-"
+      }
+    },
+    {
+      "duracaoEmSegudos": 1,
+      "descricao": "trim2",
+      "projeto": {
+        "id": 1,
+        "nome": "Alura Tracker"
+      },
+      "id": 2
+    },
+    {
+      "duracaoEmSegudos": 2,
+      "descricao": "oi",
+      "projeto": {
+        "id": 2,
+        "nome": "Monitoria1"
+      },
+      "id": 3
+    }
+  ],
+  "exceptions":[
+        {
+            "_id": "627c510b8209304213eb144d",
+            "service": "loja",
+            "traceId": "65a0da7b11716b5e",
+            "exception": "alura.br.microservicesspringcloud.exception.ServerErrorException: Falha Interna",
+            "causedBy": [
+                "java.io.IOException: Falha ao obter informações do arquivo - Class: ExceptionGenerator - Method: arithmeticExceptionInitCauseGenerator - Line: 22",
+                "java.lang.ArithmeticException: / by zero - Class: ExceptionGenerator - Method: arithmeticExceptionInitCauseGenerator - Line: 18"
+            ],
+            "path": "/home/aritana/Downloads/Cefet/cefet2021-b/Tcc1/code/tcc2-exceptionTracker/Back/microservices-spring-cloud/cloud-loja/src/main/java/alura/br/microservicesspringcloud/service/ExceptionGenerator.java"
+        },
+        {
+            "_id": "627c512c86fdf638d2c626a0",
+            "service": "fornecedorEstado",
+            "traceId": "34a716ded15532e9",
+            "exception": "alura.br.microservicesspringcloud.exception.ServerErrorException: Falha Interna",
+            "causedBy": [
+                "java.lang.UnsupportedOperationException: Operacao não permitida - Class: ExceptionGenerator - Method: arrayIndexOutOfBoundsExceptionInitCauseGenerator - Line: 38",
+                "java.lang.ArrayIndexOutOfBoundsException: Index 11 out of bounds for length 10 - Class: ExceptionGenerator - Method: arrayIndexOutOfBoundsExceptionInitCauseGenerator - Line: 35"
+            ],
+            "path": "/home/aritana/Downloads/Cefet/cefet2021-b/Tcc1/code/tcc2-exceptionTracker/Back/microservices-spring-cloud/cloud-entregador-estado/src/main/java/alura/br/microservicesspringcloud/service/ExceptionGenerator.java"
+        },
+        {
+            "_id": "627c512e8209304213eb144e",
+            "service": "loja",
+            "traceId": "34a716ded15532e9",
+            "exception": "alura.br.microservicesspringcloud.exception.ServerErrorException",
+            "causedBy": [],
+            "path": "/home/aritana/Downloads/Cefet/cefet2021-b/Tcc1/code/tcc2-exceptionTracker/Back/microservices-spring-cloud/cloud-loja/src/main/java/.java"
+        },
+        {
+            "_id": "627c5134af4e7201259d9a02",
+            "service": "fornecedorCidade",
+            "traceId": "102190a670ea42d9",
+            "exception": "alura.br.microservicesspringcloud.exception.NotFoundException: Sintaxe inválida",
+            "causedBy": [
+                "java.util.NoSuchElementException: Classe não Encontrada - Class: ExceptionGenerator - Method: nullPointerExceptionExceptionInitCauseGenerator - Line: 53",
+                "java.lang.NullPointerException - Class: ExceptionGenerator - Method: nullPointerExceptionExceptionInitCauseGenerator - Line: 50"
+            ],
+            "path": "/home/aritana/Downloads/Cefet/cefet2021-b/Tcc1/code/tcc2-exceptionTracker/Back/microservices-spring-cloud/cloud-entregador-cidade/src/main/java/alura/br/microservicesspringcloud/service/ExceptionGenerator.java"
+        },
+        {
+            "_id": "627c513586fdf638d2c626a1",
+            "service": "fornecedorEstado",
+            "traceId": "102190a670ea42d9",
+            "exception": "alura.br.microservicesspringcloud.exception.NotFoundException",
+            "causedBy": [],
+            "path": "/home/aritana/Downloads/Cefet/cefet2021-b/Tcc1/code/tcc2-exceptionTracker/Back/microservices-spring-cloud/cloud-entregador-estado/src/main/java/.java"
+        },
+        {
+            "_id": "627c51358209304213eb144f",
+            "service": "loja",
+            "traceId": "102190a670ea42d9",
+            "exception": "alura.br.microservicesspringcloud.exception.NotFoundException",
+            "causedBy": [],
+            "path": "/home/aritana/Downloads/Cefet/cefet2021-b/Tcc1/code/tcc2-exceptionTracker/Back/microservices-spring-cloud/cloud-loja/src/main/java/.java"
+        },
+        {
+            "_id": "627c510b8209304213eb144d",
+            "service": "loja",
+            "traceId": "65a0da7b11716b5e",
+            "exception": "alura.br.microservicesspringcloud.exception.ServerErrorException: Falha Interna",
+            "causedBy": [
+                "java.io.IOException: Falha ao obter informações do arquivo - Class: ExceptionGenerator - Method: arithmeticExceptionInitCauseGenerator - Line: 22",
+                "java.lang.ArithmeticException: / by zero - Class: ExceptionGenerator - Method: arithmeticExceptionInitCauseGenerator - Line: 18"
+            ],
+            "path": "/home/aritana/Downloads/Cefet/cefet2021-b/Tcc1/code/tcc2-exceptionTracker/Back/microservices-spring-cloud/cloud-loja/src/main/java/alura/br/microservicesspringcloud/service/ExceptionGenerator.java"
+        },
+        {
+            "_id": "627c512c86fdf638d2c626a0",
+            "service": "fornecedorEstado",
+            "traceId": "34a716ded15532e9",
+            "exception": "alura.br.microservicesspringcloud.exception.ServerErrorException: Falha Interna",
+            "causedBy": [
+                "java.lang.UnsupportedOperationException: Operacao não permitida - Class: ExceptionGenerator - Method: arrayIndexOutOfBoundsExceptionInitCauseGenerator - Line: 38",
+                "java.lang.ArrayIndexOutOfBoundsException: Index 11 out of bounds for length 10 - Class: ExceptionGenerator - Method: arrayIndexOutOfBoundsExceptionInitCauseGenerator - Line: 35"
+            ],
+            "path": "/home/aritana/Downloads/Cefet/cefet2021-b/Tcc1/code/tcc2-exceptionTracker/Back/microservices-spring-cloud/cloud-entregador-estado/src/main/java/alura/br/microservicesspringcloud/service/ExceptionGenerator.java"
+        },
+        {
+            "_id": "627c512e8209304213eb144e",
+            "service": "loja",
+            "traceId": "34a716ded15532e9",
+            "exception": "alura.br.microservicesspringcloud.exception.ServerErrorException",
+            "causedBy": [],
+            "path": "/home/aritana/Downloads/Cefet/cefet2021-b/Tcc1/code/tcc2-exceptionTracker/Back/microservices-spring-cloud/cloud-loja/src/main/java/.java"
+        },
+        {
+            "_id": "627c5134af4e7201259d9a02",
+            "service": "fornecedorCidade",
+            "traceId": "102190a670ea42d9",
+            "exception": "alura.br.microservicesspringcloud.exception.NotFoundException: Sintaxe inválida",
+            "causedBy": [
+                "java.util.NoSuchElementException: Classe não Encontrada - Class: ExceptionGenerator - Method: nullPointerExceptionExceptionInitCauseGenerator - Line: 53",
+                "java.lang.NullPointerException - Class: ExceptionGenerator - Method: nullPointerExceptionExceptionInitCauseGenerator - Line: 50"
+            ],
+            "path": "/home/aritana/Downloads/Cefet/cefet2021-b/Tcc1/code/tcc2-exceptionTracker/Back/microservices-spring-cloud/cloud-entregador-cidade/src/main/java/alura/br/microservicesspringcloud/service/ExceptionGenerator.java"
+        },
+        {
+            "_id": "627c513586fdf638d2c626a1",
+            "service": "fornecedorEstado",
+            "traceId": "102190a670ea42d9",
+            "exception": "alura.br.microservicesspringcloud.exception.NotFoundException",
+            "causedBy": [],
+            "path": "/home/aritana/Downloads/Cefet/cefet2021-b/Tcc1/code/tcc2-exceptionTracker/Back/microservices-spring-cloud/cloud-entregador-estado/src/main/java/.java"
+        },
+        {
+            "_id": "627c51358209304213eb144f",
+            "service": "loja",
+            "traceId": "102190a670ea42d9",
+            "exception": "alura.br.microservicesspringcloud.exception.NotFoundException",
+            "causedBy": [],
+            "path": "/home/aritana/Downloads/Cefet/cefet2021-b/Tcc1/code/tcc2-exceptionTracker/Back/microservices-spring-cloud/cloud-loja/src/main/java/.java"
+        },
+        {
+              "_id": "628d83a42c4f874dc6c47bfb",
+              "service": "loja",
+              "traceId": "a378467f566728ff",
+              "exception": "alura.br.microservicesspringcloud.exception.ServerErrorException: Falha Interna",
+              "causedBy": [
+                  "java.io.IOException: Falha ao obter informações do arquivo - Class: ExceptionGenerator - Method: arithmeticExceptionInitCauseGenerator - Line: 22",
+                  "java.lang.ArithmeticException: / by zero - Class: ExceptionGenerator - Method: arithmeticExceptionInitCauseGenerator - Line: 18"
+              ],
+              "path": "https://github.com/aritana/tcc2-exceptionTracker/blob/master/Back/microservices-spring-cloud/cloud-entregador-estado/src/main/java/alura/br/microservicesspringcloud/service/ExceptionGenerator.java"
+          }
+    ],
+"classe":[
+{
+          "classe": "package alura.br.microservicesspringcloud.service;\n\nimport alura.br.microservicesspringcloud.exception.NotFoundException;\nimport alura.br.microservicesspringcloud.exception.ServerErrorException;\nimport org.springframework.stereotype.Service;\n\nimport java.io.IOException;\nimport java.util.NoSuchElementException;\n\n@Service\npublic class ExceptionGenerator {\n    /**\n     * Lança uma exceção encandeada IOException\n     * com causa raiz ArithmeticException\n     **/\n    public void arithmeticExceptionInitCauseGenerator()  {\n        try {\n            int i = 4 / 0;\n        } catch (ArithmeticException exception) {\n\n            //simular um nível de exceção IoException\n            IOException ioException = new IOException(\"Falha ao obter informações do arquivo\");\n            ioException.initCause(exception);\n\n            //lancar nível de ServerErrorException, com cause: ioException\n            ServerErrorException serverErrorException = new ServerErrorException(\"Falha Interna\", ioException);\n            throw serverErrorException;\n        }\n    }\n\n    public void arrayIndexOutOfBoundsExceptionInitCauseGenerator() {\n\n        Integer[] fequencies = new Integer[10];\n        try {\n            Integer frequency = fequencies[11];\n        } catch (ArrayIndexOutOfBoundsException exception) {\n\n            UnsupportedOperationException unsupportedOperationException = new UnsupportedOperationException(\"Operacao não permitida\");\n            unsupportedOperationException.initCause(exception);\n            ServerErrorException serverErrorException = new ServerErrorException(\"Falha Interna\", unsupportedOperationException);\n            throw serverErrorException;\n        }\n\n    }\n\n    public void nullPointerExceptionExceptionInitCauseGenerator() {\n\n        try {\n            String name = null;\n            int getLengthOfNullString = name.length();\n        } catch (NullPointerException exception) {\n\n            NoSuchElementException noSuchElementException = new NoSuchElementException(\"Classe não Encontrada\");\n            noSuchElementException.initCause(exception);\n            NotFoundException notFoundException = new NotFoundException(\"Sintaxe inválida\", noSuchElementException);\n            throw notFoundException;\n        }\n\n    }\n}"
+      }
+    ]
+}
