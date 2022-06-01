@@ -11,10 +11,10 @@ k<template>
       :to="`/excecoes/classe/${this.$route.params.id}`"
       class="button"
     >
-      <span class="button icon-is-small">
-        <span>Ver Classe</span>
+      <span class="icon-is-small">
         <i class="fa-solid fa-file-code"></i>
       </span>
+      <span>Ver Classe</span>
     </router-link>
 
     <table class="table is-fullwidth">

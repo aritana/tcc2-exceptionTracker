@@ -1,6 +1,6 @@
 k<template>
   <section>
-    <router-link to="/" class="button">
+    <router-link :to="`/excecoes/${this.$route.params.id}`" class="button">
       <span class="icon-is-small">
         <i class="fa-solid fa-arrow-left"></i>
       </span>

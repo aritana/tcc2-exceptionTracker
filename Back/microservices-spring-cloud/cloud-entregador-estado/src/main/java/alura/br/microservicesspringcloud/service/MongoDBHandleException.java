@@ -65,6 +65,4 @@ public class MongoDBHandleException {
         exceptionDocument.append("path", servicePath + "/" + subPath + ".java");
         exceptionCollection.insertOne(exceptionDocument);
     }
-
-    //Todo lembre-se fechar o banco
 }
