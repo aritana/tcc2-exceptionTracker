@@ -55,7 +55,7 @@ header {
   padding: 1rem;
   background: #0d3b66;
   width: 100%;
-  height: 100vh;
+  height: 200vh;
   text-align: center;
 }
 
@@ -63,7 +63,7 @@ header {
 @media only screen and (max-width: 768px) {
   header {
     padding: 2.5rem;
-    height: auto;
+    height: 100vh;
   }
 }
 
