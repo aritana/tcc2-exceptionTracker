@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-import Tarefas from "../views/MinhasTarefas.vue";
+import ListaExcecoes from "../views/MinhaListaExcecoes.vue";
 import MinhasExcecoes from "../views/MinhasExcecoes.vue";
 import Excecao from "../views/excecoes/MinhaExcecao.vue";
 import Classe from "../views/excecoes/MinhaClasse.vue";
@@ -8,8 +8,8 @@ import Grafo from "../views/MeuGrafo.vue";
 const routes: RouteRecordRaw[] = [
   {
     path: "/",
-    name: "Tarefas",
-    component: Tarefas,
+    name: "ListaExcecoes",
+    component: ListaExcecoes,
   },
   {
     path: "/excecoes",
