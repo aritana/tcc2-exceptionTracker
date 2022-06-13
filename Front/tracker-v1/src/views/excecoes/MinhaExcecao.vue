@@ -21,6 +21,8 @@ k<template>
       <thead>
         <tr>
           <th>
+            Serviço: {{ pegarServico }}
+            <br />
             Chained Exceptions: A última exceção na tabela é a exceção raiz.
           </th>
         </tr>
@@ -68,6 +70,13 @@ export default defineComponent({
       );
       const causedBy = ex?.causedBy;
       return causedBy;
+    },
+    pegarServico(): string | undefined {
+      const ex = this.store.state.exceptions.find(
+        (ex: IException) => ex.traceId == this.$route.params.id
+      );
+      const servico = ex?.service;
+      return servico;
     },
   },
   methods: {
