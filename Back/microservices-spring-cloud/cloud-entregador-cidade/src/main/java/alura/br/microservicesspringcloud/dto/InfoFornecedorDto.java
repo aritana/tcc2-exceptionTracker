@@ -34,7 +34,7 @@ public class InfoFornecedorDto {
         }catch (NullPointerException exception){
 
             logger.info("NullPointerException {}",exception);
-            throw new NotFoundException("Cidade não encontrada");
+            throw new NotFoundException("Cidade não encontrada",exception);
         }
 
         return infoFornecedorDto;
