@@ -2,6 +2,7 @@ package alura.br.microservicesspringcloud.service;
 
 import alura.br.microservicesspringcloud.dto.CompraDTO;
 import alura.br.microservicesspringcloud.dto.InfoFornecedorDto;
+import alura.br.microservicesspringcloud.exception.ServerErrorException;
 import alura.br.microservicesspringcloud.networking.service.FornecedorServiceCore;
 import org.apache.logging.slf4j.SLF4JLogger;
 import org.slf4j.Logger;
@@ -25,8 +26,14 @@ public class CompraService {
         String estado = compra.getEndereco().getEstado();
         String cidade = compra.getEndereco().getCidade();
         logger.info("Buscando informações do fornecedor de {}",estado);
-
-        InfoFornecedorDto infoFornecedorDto= fornecedorServiceCore.getFornecedorList(estado,cidade);
-        return infoFornecedorDto;
+        try{
+            InfoFornecedorDto infoFornecedorDto= fornecedorServiceCore.getFornecedorList(estado,cidade);
+            return infoFornecedorDto;
+        }catch (feign.RetryableException exception) {
+            UnsupportedOperationException unsupportedOperationException = new UnsupportedOperationException("Feign failure");
+            unsupportedOperationException.initCause(exception);
+            ServerErrorException serverErrorException = new ServerErrorException("Falha Interna", unsupportedOperationException);
+            throw serverErrorException;
+        }
     }
 }
