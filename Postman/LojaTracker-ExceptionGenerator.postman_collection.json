@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "6421651c-e08f-4561-a01e-a023d2f7d9ae",
+		"name": "LojaTracker-ExceptionGenerator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GerarException:FornecedorLoja",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"itens\":[\n        {\n            \"id\":\"1\",\n            \"quantidade\":5\n        },\n        {\n            \"id\":\"2\",\n            \"quantidade\":8\n        }\n    ],\n    \"endereco\":{\n        \"rua\":\"Campo Florido\",\n        \"numero\":351,\n        \"cidade\": \"Belo Horizonte\",\n        \"estado\": \"MG\"\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/loja/exception/:exception/:service",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"loja",
+						"exception",
+						":exception",
+						":service"
+					],
+					"variable": [
+						{
+							"key": "exception",
+							"value": "3"
+						},
+						{
+							"key": "service",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FORNECEDOR-infoEstado",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"itens\":[\n        {\n            \"id\":\"1\",\n            \"quantidade\":5\n        },\n        {\n            \"id\":\"2\",\n            \"quantidade\":8\n        }\n    ],\n    \"endereco\":{\n        \"rua\":\"Campo Florido\",\n        \"numero\":351,\n        \"estado\": \"MG\"\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/fornecedor/v1/info/go",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"fornecedor",
+						"v1",
+						"info",
+						"go"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GerarException:FornecedorCidade",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8082/fornecedorCidade/exception/1/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"fornecedorCidade",
+						"exception",
+						"1",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GerarException:FornecedorEstado",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8081/fornecedorEstado/exception/1/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"fornecedorEstado",
+						"exception",
+						"1",
+						"3"
+					],
+					"query": [
+						{
+							"key": "Content-Type",
+							"value": "json",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

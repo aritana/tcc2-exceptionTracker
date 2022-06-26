@@ -41,7 +41,7 @@
 			"response": []
 		},
 		{
-			"name": "Get Exceptions Method",
+			"name": "Get Class's Exception",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -70,7 +70,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/exceptions/traceId?traceId=3ed72e7d44383983",
+					"raw": "{{base_url}}/exceptions/traceId?traceId=49dd03f55d992a92",
 					"host": [
 						"{{base_url}}"
 					],
@@ -81,7 +81,7 @@
 					"query": [
 						{
 							"key": "traceId",
-							"value": "3ed72e7d44383983"
+							"value": "49dd03f55d992a92"
 						}
 					]
 				}
@@ -127,14 +127,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/exceptions/id/626b61627a733d4e5093cfb2",
+					"raw": "{{base_url}}/exceptions/id/62b86243c05190390e1d03a3",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"exceptions",
 						"id",
-						"626b61627a733d4e5093cfb2"
+						"62b86243c05190390e1d03a3"
 					]
 				}
 			},

@@ -11,12 +11,9 @@ import javax.validation.constraints.NotNull;
 @Setter
 @AllArgsConstructor
 public class EnderecoDto {
-
     @NotEmpty @NotNull
     String estado;
-
     String cidade;
     String rua;
     int numero;
-
 }
