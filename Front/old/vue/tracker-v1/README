@@ -1,2 +1,0 @@
-rodar deb.json:
-json-server --watch db.json
